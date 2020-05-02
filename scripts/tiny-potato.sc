@@ -1,14 +1,13 @@
-__config -> m(
+__config() -> m(
 	l('stay_loaded', true),
 	l('scope', 'global')
-)
+);
 
 __on_tick() -> _tick();
 __on_tick_nether() -> _tick();
 __on_tick_ender() -> _tick();
 
-
-texture_payload = 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWNjYzc5ZmU5OWY0MzMxMDFkOTJmMzQ1ZmIyMjM5ZGIzMGQwNzM5Y2NjYTkzMzlmYTI2MjNlYjZiMDZhNTgzYSJ9fX0='
+texture_base64 = 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWNjYzc5ZmU5OWY0MzMxMDFkOTJmMzQ1ZmIyMjM5ZGIzMGQwNzM5Y2NjYTkzMzlmYTI2MjNlYjZiMDZhNTgzYSJ9fX0=';
 
 spawn_tiny_potato(pos, count) -> spawn('item', pos, '{Item:{
 	id:"player_head",
@@ -17,7 +16,7 @@ spawn_tiny_potato(pos, count) -> spawn('item', pos, '{Item:{
 		display:{Name:"{\\"text\\":\\"Tiny Potato\\"}"},
 		SkullOwner:{
 			Id:"9da44549-cde5-4748-8341-2a3899087a9f",
-			Properties:{textures:[{Value:"'+texture_payload+'"}]}
+			Properties:{textures:[{Value:"'+texture_base64+'"}]}
 		}
 	}
 }}');
