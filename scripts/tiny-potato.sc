@@ -25,11 +25,11 @@ spawn_tiny_potato(pos, count) -> spawn('item', pos, '{Item:{
 
 cauldron_craft_tiny_potato() -> for(
 	filter(
-		entity_list('items'),
-		_~'item':0 == 'potato' &&
-		block(_~'pos') == 'cauldron' &&
-		property(_~'pos','level') > 0 &&
-		block(below(_~'pos')) == 'fire'
+		entity_list('items'), true
+		&& _~'item':0 == 'potato'
+		&& block(_~'pos') == 'cauldron'
+		&& property(_~'pos','level') > 0
+		&& block(below(_~'pos')) == 'fire'
 		// TODO: make this only work for soul fire.
 	),(
 		spawn_tiny_potato(_~'pos',_~'item':1);
@@ -37,6 +37,19 @@ cauldron_craft_tiny_potato() -> for(
 	)
 );
 
+fix_tiny_potato_names() -> for(
+	filter(
+		entity_list('items'), true
+		&& _~'item':0 == 'player head'
+		&& false
+		// TODO: We need to assign some sort of internal tag to tiny
+		// potato so we can search for it here.
+	),(
+		// TODO: Change name from 'player head' back to 'tiny potato'.
+	)
+);
+
 _tick() -> (
 	cauldron_craft_tiny_potato();
+	// fix_tiny_potato_names();
 );
