@@ -9,6 +9,8 @@ __on_tick_ender() -> _tick();
 
 texture_base64 = 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWNjYzc5ZmU5OWY0MzMxMDFkOTJmMzQ1ZmIyMjM5ZGIzMGQwNzM5Y2NjYTkzMzlmYTI2MjNlYjZiMDZhNTgzYSJ9fX0=';
 
+below(pos) -> l(pos:0, pos:1 - 1, pos:2);
+
 spawn_tiny_potato(pos, count) -> spawn('item', pos, '{Item:{
 	id:"player_head",
 	Count:'+count+',
@@ -21,9 +23,7 @@ spawn_tiny_potato(pos, count) -> spawn('item', pos, '{Item:{
 	}
 }}');
 
-below(pos) -> l(pos:0, pos:1 - 1, pos:2);
-
-_tick() -> for(
+cauldron_craft_tiny_potato() -> for(
 	filter(
 		entity_list('items'),
 		_~'item':0 == 'potato' &&
@@ -35,4 +35,8 @@ _tick() -> for(
 		spawn_tiny_potato(_~'pos',_~'item':1);
 		modify(_,'remove');
 	)
+);
+
+_tick() -> (
+	cauldron_craft_tiny_potato();
 );
